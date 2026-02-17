@@ -1,13 +1,15 @@
 const express = require("express");
 let mysql = require('mysql2');
 
+const path = require('path');
 const app = express();
 
 app.use(express.urlencoded({extended: false}));
 
 app.listen(3000, () => console.log("Listening on http://localhost:3000"));
 
-app.use(express.static("./public"));
+//app.use(express.static("./public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
 let con = mysql.createConnection({
     host: "localhost",
@@ -46,3 +48,7 @@ function getData(request, response) {
 app.get("/data", getData);
 
 app.get("/db", getDB); 
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
