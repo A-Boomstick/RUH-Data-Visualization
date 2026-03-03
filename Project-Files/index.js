@@ -36,7 +36,7 @@ function getDB(request, response) {
         response.send(data);
     })
     
-};
+}; 
 
 // localhost:3000/test
 
