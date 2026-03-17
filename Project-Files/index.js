@@ -5,9 +5,10 @@ const path = require('path');
 const app = express();
 
 app.use(express.urlencoded({extended: false}));
-
+app.use(express.json());
 app.listen(3000, () => console.log("Listening on http://localhost:3000"));
 
+//app.use(express.static(__dirname + '/public'));
 //app.use(express.static("./public"));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -49,6 +50,20 @@ app.get("/data", getData);
 
 app.get("/db", getDB); 
 
+
+function postExample(request, response) {
+    console.log(request.body);
+    let sql = "INSERT INTO TestData (Name, Number, Something) VALUES (?)";
+    let values = [request.body.name, request.body.age, request.body.misc]
+    con.query(sql, [values], function (err, result) {
+        if (err) throw err;
+        console.log("Record inserted!")
+    })
+    response.end("Done");
+}
+
+app.post("/example", postExample);
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
-});
+}); 
