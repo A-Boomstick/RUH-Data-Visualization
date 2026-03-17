@@ -16,13 +16,13 @@ let con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "Bruh",
-    database: "TestSet"
+    database: "RUHData"
 });
 
 con.connect(function(err) {
     if (err) throw err;
     console.log("Connected")
-    con.query("SELECT * FROM TestData", function (err, result, fields){
+    con.query("SELECT * FROM StaffLogin", function (err, result, fields){
         if (err) throw err;
         console.log(JSON.stringify(result));
     });
@@ -30,7 +30,7 @@ con.connect(function(err) {
 
 function getDB(request, response) {
     console.log("Database Test Activated!")
-    con.query("SELECT * FROM TestData", function(err, result, fields) {
+    con.query("SELECT * FROM StaffLogin", function(err, result, fields) {
         if (err) throw err;
         const data = result;
         console.log(data)

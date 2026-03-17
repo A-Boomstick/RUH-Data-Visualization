@@ -40,3 +40,5 @@ CREATE TABLE RUH (
     FOREIGN KEY (TaskID) REFERENCES Task(TaskID),
     FOREIGN KEY (CommentID) REFERENCES Comment(CommentID)
 );
+
+INSERT into StaffLogin (Username, Password, AccessLevel, Department) VALUES ('Testing', 'bweh', 'Low-Level', 'Cringe')
