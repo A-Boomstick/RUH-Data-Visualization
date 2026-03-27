@@ -1,30 +1,9 @@
-//const pushDatabase = document.getElementById("Input-Button");
 const pullDatabase = document.getElementById("DB-Button");
 
 
-/*async function pushClicked(event) {
-    const nameParam = document.getElementById("Name-Input").value;
-    const ageParam = document.getElementById("Age-Input").value;
-    const miscParam = document.getElementById("Misc-Input").value;
-
-    let data = {
-        name: nameParam,
-        age: ageParam,
-        misc: miscParam
-    };
-
-    const response = await fetch("/example", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-
-} */
 
 async function pullClicked(event) {
-    //document.getElementById("DB-Button").textContent="It_Worked";
+    
     const response = await fetch("/db");
     const responseData = await response.json();
 
@@ -86,5 +65,5 @@ async function pullClicked(event) {
 
 }
 
-//pushDatabase.addEventListener('click', pushClicked)
+
 pullDatabase.addEventListener('click', pullClicked)
