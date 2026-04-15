@@ -139,8 +139,13 @@ body {
 }
 
 .powerbi-example {
-  width: 90%;
-  height: 400px;
+  width: 100%;
+  height: 600px;
+}
+
+.powerbi-example iframe {
+  width: 100%;
+  height: 100%;
 }
 
 .assessment-card h2 {
