@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RUH Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  
+  <div class="header">
+    <h1>Settings</h1>
+    <div class="header-logo">
+      <img src="logo.png" alt="RUH Logo" />
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ACCOUNT SECTION -->
+    <div class="settings-card">
+      <h2>Account</h2>
+
+      <div class="settings-item">
+        <label>Name</label>
+        <input type="text" placeholder="John Doe" />
+      </div>
+
+      <div class="settings-item">
+        <label>Email</label>
+        <input type="email" placeholder="john.doe@nhs.net" />
+      </div>
+
+      <div class="settings-item">
+        <label>Password</label>
+        <input type="password" placeholder="••••••••" />
+      </div>
+
+      <button class="save-btn">Save Changes</button>
+    </div>
+
+    <!-- NOTIFICATIONS SECTION -->
+    <div class="settings-card">
+      <h2>Notifications</h2>
+
+      <div class="settings-item toggle-item">
+        <span>Push Notifications</span>
+        <div class="toggle"></div>
+      </div>
+
+      <div class="settings-item toggle-item">
+        <span>Email Notifications</span>
+        <div class="toggle"></div>
+      </div>
+
+      <div class="settings-item toggle-item">
+        <span>Task Reminders</span>
+        <div class="toggle"></div>
+      </div>
+    </div>
+
+    <!-- DARK MODE SECTION -->
+    <div class="settings-card">
+      <h2>Appearance</h2>
+
+      <div class="settings-item toggle-item">
+        <span>Dark Mode</span>
+        <div class="toggle"></div>
+      </div>
+
+      <div class="settings-item toggle-item">
+        <span>Large Text</span>
+        <div class="toggle"></div>
+      </div>
+    </div>
+
+    
+    <div class="settings-card">
+      <h2>Account Actions</h2>
+
+      <button class="action-btn">Log Out</button>
+      <button class="action-btn danger">Delete Account</button>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM NAVIGATION -->
+  <div class="bottom-nav">
+    <a href=Dash.html" class="nav-btn">
+      <img src="home-icon.png" alt="Home" />
+      HOME
+    </a>
+
+    <a href="recognition.html" class="nav-btn">
+      <img src="recognition-icon.png" alt="Recognition" />
+      RECOGNITION
+    </a>
+
+    <a href="settings.html" class="nav-btn active">
+      <img src="settings-icon.png" alt="Settings" />
+      SETTINGS
+    </a>
+  </div>
+
+</body>
+</html>

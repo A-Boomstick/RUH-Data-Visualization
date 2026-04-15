@@ -1,0 +1,362 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background-color: #1873bb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 3px solid #e0e0e0;
+}
+
+.header h1 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #111;
+}
+
+.header-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.header-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* MAIN CONTENT */
+.content {
+  flex: 1;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* PROFILE CARD */
+.profile-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-name {
+  font-weight: 800;
+  font-size: 1rem;
+  margin-top: 6px;
+  color: #111;
+}
+
+.badges {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.badge-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge {
+  padding: 5px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  border: 2.5px solid;
+}
+
+.badge.not-started {
+  background: white;
+  border-color: #e05c5c;
+  color: #c0392b;
+}
+
+.badge.developing {
+  background: white;
+  border-color: #e0b84d;
+  color: #c07000;
+}
+
+.badge.maturing {
+  background: #6dd46d;
+  border-color: #4caf50;
+  color: white;
+}
+
+.badge.embedded {
+  background: #2e9e2e;
+  border-color: #1b7a1b;
+  color: white;
+}
+
+.badge-count {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #111;
+}
+
+/* ASSESSMENT CARD */
+.assessment-card {
+  background: #e8e8e8;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.assessment-card h2 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #111;
+}
+
+.section-label {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.bar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bar {
+  height: 34px;
+  border-radius: 999px;
+  border: 2px solid;
+}
+
+.bar.not-started {
+  background: #f4a0a0;
+  border-color: #e05c5c;
+}
+
+.bar.developing {
+  background: #f5e47a;
+  border-color: #d4b800;
+}
+
+.bar.maturing {
+  background: #90ee90;
+  border-color: #4caf50;
+}
+
+.bar.embedded {
+  background: #4caf50;
+  border-color: #2e7d32;
+}
+
+/* BOTTOM NAVIGATION STUFF */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px 24px 24px;
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: #1a8fd1;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 20px;
+  cursor: pointer;
+  color: white;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.15s;
+  min-width: 80px;
+}
+
+.nav-btn:hover {
+  background: #1565a8;
+}
+
+.nav-btn.active {
+  background: #0d5a9e;
+}
+
+.nav-btn img {
+  width: 28px;
+  height: 28px;
+}
+
+
+
+/* SETTINGS CARD */
+.settings-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settings-card h2 {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #111;
+}
+
+/* SETTINGS ITEMS */
+.settings-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-item label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.settings-item input {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.95rem;
+  color: #111;
+  outline: none;
+}
+
+.settings-item input:focus {
+  border-color: #1873bb;
+}
+
+
+.toggle-item {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-item span {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #111;
+}
+
+.toggle {
+  width: 48px;
+  height: 26px;
+  background: #ddd;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* BUTTONS */
+.save-btn {
+  background: #1873bb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.save-btn:hover {
+  background: #1565a8;
+}
+
+.action-btn {
+  background: #f0f0f0;
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.action-btn:hover {
+  background: #e0e0e0;
+}
+
+.action-btn.danger {
+  color: #c0392b;
+}
+
+.action-btn.danger:hover {
+  background: #fde8e8;
+}
+
+
+/* RECOGNITION CARD */
+.recognition-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex: 1;
+}
+
+.recognition-panel {
+  background: #e8e8e8;
+  border-radius: 12px;
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.recognition-panel h2 {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #111;
+}
