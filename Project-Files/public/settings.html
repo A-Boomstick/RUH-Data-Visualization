@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RUH Settings</title>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  
-  <div class="header">
+  <header class="header">
     <h1>Settings</h1>
     <div class="header-logo">
-      <img src="logo.png" alt="RUH Logo" />
+      <img src="logo.png" alt="RUH Logo">
     </div>
-  </div>
+  </header>
 
-  <div class="content">
+  <main class="content">
 
     <!-- ACCOUNT SECTION -->
     <div class="settings-card">
@@ -25,20 +24,20 @@
 
       <div class="settings-item">
         <label>Name</label>
-        <input type="text" placeholder="John Doe" />
+        <input type="text" placeholder="John Doe" autocomplete="name">
       </div>
 
       <div class="settings-item">
         <label>Email</label>
-        <input type="email" placeholder="john.doe@nhs.net" />
+        <input type="email" placeholder="john.doe@nhs.net" autocomplete="email">
       </div>
 
       <div class="settings-item">
         <label>Password</label>
-        <input type="password" placeholder="••••••••" />
+        <input type="password" placeholder="••••••••" autocomplete="new-password">
       </div>
 
-      <button class="save-btn">Save Changes</button>
+      <button type="button" class="save-btn">Save Changes</button>
     </div>
 
     <!-- NOTIFICATIONS SECTION -->
@@ -76,33 +75,33 @@
       </div>
     </div>
 
-    
     <div class="settings-card">
       <h2>Account Actions</h2>
 
-      <button class="action-btn">Log Out</button>
-      <button class="action-btn danger">Delete Account</button>
+      <button type="button" class="action-btn">Log Out</button>
+      <button type="button" class="action-btn danger">Delete Account</button>
     </div>
 
-  </div>
+  </main>
 
   <!-- BOTTOM NAVIGATION -->
-  <div class="bottom-nav">
-    <a href=Dash.html" class="nav-btn">
-      <img src="home-icon.png" alt="Home" />
+  <footer class="bottom-nav">
+    <a href="Dash.html" class="nav-btn">
+      img
+      <img src="home-icon.png" alt="Home">
       HOME
     </a>
 
     <a href="recognition.html" class="nav-btn">
-      <img src="recognition-icon.png" alt="Recognition" />
+      <img src="recognition-icon.png" alt="Recognition">
       RECOGNITION
     </a>
 
     <a href="settings.html" class="nav-btn active">
-      <img src="settings-icon.png" alt="Settings" />
+      <img src="settings-icon.png" alt="Settings">
       SETTINGS
     </a>
-  </div>
+  </footer>
 
 </body>
 </html>

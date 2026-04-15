@@ -138,6 +138,11 @@ body {
   gap: 14px;
 }
 
+.powerbi-example {
+  width: 90%;
+  height: 400px;
+}
+
 .assessment-card h2 {
   font-size: 1.4rem;
   font-weight: 900;
