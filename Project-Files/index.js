@@ -48,5 +48,5 @@ app.get("/db", getDB);
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+    res.sendFile(path.join(__dirname, 'public', 'Dash.html'));
 }); 
