@@ -6,7 +6,7 @@ CREATE TABLE StaffLogin (
     StaffID INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(30) NOT NULL,
     Password VARCHAR(30) NOT NULL,
-    AccessLevel VARCHAR(30),
+    AccessLevel INT,
     Department VARCHAR(30)
 );
 
