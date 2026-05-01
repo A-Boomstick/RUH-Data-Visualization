@@ -16,21 +16,48 @@
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
   <main class="content">
+
+    <!-- USER INFO STRIP -->
+    <div class="user-info-strip" id="user-strip">
+      Signed in as <span id="strip-username">Loading…</span>
+      <span class="dot">•</span>
+      Access Level: <span id="strip-level">—</span>
+    </div>
 
     <div class="recognition-card">
 
-      <div class="recognition-panel">
-        <h2>Coaching Comments</h2>
+      <!-- COACHING COMMENTS PANEL (access level 2+) -->
+      <div class="recognition-panel" id="coaching-panel">
+        <div class="recognition-panel-header">
+          <h2>Coaching Comments</h2>
+          <span class="panel-badge level-2">Level 2+</span>
+        </div>
+        <div class="comment-list" id="coaching-comments">
+          <!-- comments injected here -->
+        </div>
+        <!-- Button only shown if access level >= 2 -->
+        <button class="add-comment-btn" id="coaching-btn" style="display:none" onclick="openModal('coaching')">
+          <span class="plus">＋</span> Add Comment
+        </button>
       </div>
 
-      <div class="recognition-panel">
-        <h2>Teammate Recognition</h2>
+      <!-- TEAMMATE RECOGNITION PANEL (access level 1) -->
+      <div class="recognition-panel" id="teammate-panel">
+        <div class="recognition-panel-header">
+          <h2>Teammate Recognition</h2>
+          <span class="panel-badge">Level 1</span>
+        </div>
+        <div class="comment-list" id="teammate-comments">
+          <!-- comments injected here -->
+        </div>
+        <!-- Button shown for all logged-in users -->
+        <button class="add-comment-btn" id="teammate-btn" style="display:none" onclick="openModal('teammate')">
+          <span class="plus">＋</span> Add Comment
+        </button>
       </div>
 
     </div>
-
   </main>
 
   <!-- BOTTOM NAVIGATION BAR -->
@@ -39,17 +66,201 @@
       <img src="home-icon.png" alt="Home">
       <p>HOME</p>
     </a>
-
     <a href="recognition.html" class="nav-btn active">
       <img src="recognition-icon.png" alt="Recognition">
       <p>RECOGNITION</p>
     </a>
-
     <a href="settings.html" class="nav-btn">
       <img src="settings-icon.png" alt="Settings">
       <p>SETTINGS</p>
     </a>
   </footer>
+
+  <!-- ── COMMENT MODAL ── -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <h3>Add a Comment</h3>
+      <p class="modal-target" id="modal-target-label">Posting to: Teammate Recognition</p>
+      <textarea id="modal-textarea" placeholder="Write your comment here…" maxlength="255"></textarea>
+      <div class="status-bar" id="modal-status"></div>
+      <div class="modal-actions">
+        <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+        <button class="modal-submit" id="modal-submit" onclick="submitComment()">Post</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── STATE ──
+    let currentUser = null;   // { StaffID, Username, AccessLevel, Department }
+    let postingTo = null;     // 'coaching' | 'teammate'
+
+    // ── INIT: fetch the logged-in user from /db ──
+    async function init() {
+      try {
+        const res = await fetch('/session');
+        if (res.status === 401) {
+          window.location.href = 'login.html';
+          return;
+        }
+        const data = await res.json();
+        if (data && data.StaffID) {
+          currentUser = data;
+          updateUserStrip();
+          showButtons();
+        } else {
+          showStatus('modal-status', 'Could not load user data.', 'error');
+        }
+      } catch (e) {
+        console.error('Failed to fetch user:', e);
+      }
+
+      // Load existing comments
+      await loadComments();
+    }
+
+    function updateUserStrip() {
+      document.getElementById('strip-username').textContent = currentUser.Username;
+      document.getElementById('strip-level').textContent = currentUser.AccessLevel;
+    }
+
+    function showButtons() {
+      // All users can post to Teammate
+      document.getElementById('teammate-btn').style.display = 'flex';
+
+      // Only level 2+ can post to Coaching
+      if (currentUser.AccessLevel >= 2) {
+        document.getElementById('coaching-btn').style.display = 'flex';
+      }
+    }
+
+    // ── LOAD COMMENTS FROM SERVER ──
+    async function loadComments() {
+      try {
+        const res = await fetch('/comments');
+        if (!res.ok) return;
+        const comments = await res.json();
+
+        document.getElementById('coaching-comments').innerHTML = '';
+        document.getElementById('teammate-comments').innerHTML = '';
+
+        comments.forEach(c => renderComment(c));
+      } catch (e) {
+        console.error('Failed to load comments:', e);
+      }
+    }
+
+    // ── RENDER A SINGLE COMMENT CARD ──
+    function renderComment(comment) {
+      const panel = comment.Panel === 'coaching'
+        ? document.getElementById('coaching-comments')
+        : document.getElementById('teammate-comments');
+
+      const card = document.createElement('div');
+      card.className = 'comment-card';
+
+      const date = comment.PostedAt
+        ? new Date(comment.PostedAt).toLocaleString('en-GB', { dateStyle: 'short', timeStyle: 'short' })
+        : 'Just now';
+
+      card.innerHTML = `
+        <div class="comment-author">${escapeHtml(comment.AuthorName || 'Unknown')}</div>
+        <div class="comment-text">${escapeHtml(comment.CommentText)}</div>
+        <div class="comment-time">${date}</div>
+      `;
+
+      panel.appendChild(card);
+      panel.scrollTop = panel.scrollHeight;
+    }
+
+    // ── MODAL CONTROLS ──
+    function openModal(target) {
+      postingTo = target;
+      const label = target === 'coaching' ? 'Coaching Comments' : 'Teammate Recognition';
+      document.getElementById('modal-target-label').textContent = `Posting to: ${label}`;
+      document.getElementById('modal-textarea').value = '';
+      document.getElementById('modal-status').className = 'status-bar';
+      document.getElementById('modal-status').textContent = '';
+      document.getElementById('modal-submit').disabled = false;
+      document.getElementById('modal-overlay').classList.add('active');
+      document.getElementById('modal-textarea').focus();
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('active');
+      postingTo = null;
+    }
+
+    // Close on overlay click
+    document.getElementById('modal-overlay').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // ── SUBMIT COMMENT ──
+    async function submitComment() {
+      const text = document.getElementById('modal-textarea').value.trim();
+      if (!text) {
+        showStatus('modal-status', 'Please write something before posting.', 'error');
+        return;
+      }
+      if (!currentUser) {
+        showStatus('modal-status', 'User not loaded. Please refresh.', 'error');
+        return;
+      }
+
+      // Access level guard (defensive, buttons already hidden)
+      if (postingTo === 'coaching' && currentUser.AccessLevel < 2) {
+        showStatus('modal-status', 'You do not have permission to post here.', 'error');
+        return;
+      }
+
+      document.getElementById('modal-submit').disabled = true;
+
+      try {
+        const res = await fetch('/comments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            staffId: currentUser.StaffID,
+            commentText: text,
+            panel: postingTo
+          })
+        });
+
+        if (!res.ok) throw new Error('Server error');
+
+        const saved = await res.json();
+        renderComment({
+          AuthorName: currentUser.Username,
+          CommentText: text,
+          Panel: postingTo,
+          PostedAt: new Date().toISOString()
+        });
+
+        closeModal();
+      } catch (e) {
+        showStatus('modal-status', 'Failed to post comment. Try again.', 'error');
+        document.getElementById('modal-submit').disabled = false;
+      }
+    }
+
+    // ── HELPERS ──
+    function showStatus(id, msg, type) {
+      const el = document.getElementById(id);
+      el.textContent = msg;
+      el.className = `status-bar ${type}`;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    init();
+  </script>
 
 </body>
 </html>

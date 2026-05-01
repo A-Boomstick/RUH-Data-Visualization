@@ -50,5 +50,4 @@ CREATE TABLE RecognitionComment (
     FOREIGN KEY (StaffID) REFERENCES StaffLogin(StaffID)
 );
 
-INSERT into StaffLogin (Username, Password, AccessLevel, Department) VALUES ('TestUserName', 'bweh', 3, 'Cringe');
-INSERT into StaffLogin (Username, Password, AccessLevel, Department) VALUES ('TestUsername2', 'testpassword', 1, 'RUH');
+INSERT into StaffLogin (Username, Password, AccessLevel, Department) VALUES ('TestUserName', 'bweh', 1, 'Cringe');

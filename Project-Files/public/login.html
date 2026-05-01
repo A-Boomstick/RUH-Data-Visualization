@@ -168,24 +168,18 @@
       <h3>Sign In</h3>
 
       <div class="login-field">
-        <label>Email</label>
-        <input type="email" placeholder="john.doe@nhs.net" />
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Enter your username" />
       </div>
 
       <div class="login-field">
         <label>Password</label>
-        <input type="password" placeholder="••••••••" />
+        <input type="password" id="password" placeholder="••••••••" />
       </div>
 
-      <button class="login-btn" onclick="window.location.href='Dash.html'">Sign In</button>
+      <div class="status-bar" id="login-status" style="color:#c0392b;font-size:0.88rem;font-weight:700;min-height:18px;"></div>
 
-      <div class="login-divider">
-        <hr />
-        <span>OR</span>
-        <hr />
-      </div>
-
-      <a href="#" class="forgot-link">Forgot your password?</a>
+      <button class="login-btn" id="login-btn" onclick="doLogin()">Sign In</button>
     </div>
 
     <div class="login-footer">
@@ -193,6 +187,45 @@
     </div>
 
   </div>
+
+  <script>
+    async function doLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const status = document.getElementById('login-status');
+      const btn = document.getElementById('login-btn');
+
+      if (!username || !password) {
+        status.textContent = 'Please enter your username and password.';
+        return;
+      }
+
+      btn.disabled = true;
+      status.textContent = '';
+
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          status.textContent = data.error || 'Login failed.';
+          btn.disabled = false;
+        } else {
+          window.location.href = 'recognition.html';
+        }
+      } catch (e) {
+        status.textContent = 'Could not connect to server.';
+        btn.disabled = false;
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') doLogin();
+    });
+  </script>
 
 </body>
 </html>
