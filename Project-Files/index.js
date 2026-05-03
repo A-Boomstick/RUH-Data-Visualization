@@ -44,6 +44,16 @@ function getDB(request, response) {
     
 }; 
 
+app.get("/tasks", function(req, res) {
+    console.log("Getting tasks!")
+    con.query("SELECT * FROM Task", function(err, result) {
+        if (err) throw err;
+        const data = result;
+        console.log(data)
+        res.send(data);
+    })
+});
+
 // localhost:3000/test
 
 

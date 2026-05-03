@@ -52,3 +52,8 @@ CREATE TABLE RecognitionComment (
 
 INSERT into StaffLogin (Username, Password, AccessLevel, Department) VALUES ('TestUserName', 'bweh', 3, 'Cringe');
 INSERT into StaffLogin (Username, Password, AccessLevel, Department) VALUES ('TestUsername2', 'testpassword', 1, 'RUH');
+
+INSERT into Task (TaskName, Description, SetDate, DueDate, CompletionStatus) VALUES ('Testing', 'A Task for testing', '2026-05-02', '2026-05-03', 'Not Started');
+INSERT into Task (TaskName, Description, SetDate, DueDate, CompletionStatus) VALUES ('Testing2', 'A Task for testing', '2026-05-02', '2026-05-03', 'Developing');
+INSERT into Task (TaskName, Description, SetDate, DueDate, CompletionStatus) VALUES ('Testing3', 'A Task for testing', '2026-05-02', '2026-05-03', 'Maturing');
+INSERT into Task (TaskName, Description, SetDate, DueDate, CompletionStatus) VALUES ('Testing4', 'A Task for testing', '2026-05-02', '2026-05-03', 'Embedded');

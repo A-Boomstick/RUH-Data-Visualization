@@ -6,6 +6,7 @@
   <title>RUH Team Overview</title>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="dashpage.js" defer></script>
 </head>
 <body>
 
@@ -29,19 +30,19 @@
       <div class="badges">
         <div class="badge-group">
           <span class="badge not-started">Not Started</span>
-          <span class="badge-count">Tasks: 2</span>
+          <span id="ns-count" class="badge-count">Tasks: 2</span>
         </div>
         <div class="badge-group">
           <span class="badge developing">Developing</span>
-          <span class="badge-count">Tasks: 4</span>
+          <span id="d-count" class="badge-count">Tasks: 4</span>
         </div>
         <div class="badge-group">
           <span class="badge maturing">Maturing</span>
-          <span class="badge-count">Tasks: 10</span>
+          <span id="m-count" class="badge-count">Tasks: 10</span>
         </div>
         <div class="badge-group">
           <span class="badge embedded">Embedded</span>
-          <span class="badge-count">Tasks: 8</span>
+          <span id="e-count" class="badge-count">Tasks: 8</span>
         </div>
       </div>
     </div>
@@ -61,7 +62,6 @@
         <div class="section-label">Not Started</div>
         <div class="bar-group">
           <div class="bar not-started"></div>
-          <div class="bar not-started"></div>
         </div>
       </div>
 
@@ -69,7 +69,20 @@
         <div class="section-label">Developing</div>
         <div class="bar-group">
           <div class="bar developing"></div>
-          <div class="bar developing"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">Maturing</div>
+        <div class="bar-group">
+          <div class="bar maturing"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">Embedded</div>
+        <div class="bar-group">
+          <div class="bar embedded"></div>
         </div>
       </div>
     </div>
