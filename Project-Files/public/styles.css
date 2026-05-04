@@ -370,3 +370,103 @@ body {
   font-weight: 900;
   color: #111;
 }
+
+/* Comments Styling */
+.add-comment-btn,
+.modal-overlay button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #1a8fd1;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 20px;
+  cursor: pointer;
+  color: white;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.comment-list {
+  overflow-y: auto;
+  max-height: 450px;
+  margin: 1em 0;
+}
+
+.comment-card {
+  background-color: white;
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 1em;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-time {
+  font-style: italic;
+  color: rgb(161, 161, 161);
+}
+
+.add-comment-btn {
+  margin-top: auto;
+}
+
+.modal-overlay {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  font-size: 2em;
+  visibility: hidden;
+  z-index: 10;
+  position: fixed; /* better for full-screen overlays */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  padding: 0.7em;
+  background-color: white;
+  border-radius: 1em;
+}
+
+.modal-overlay .modal-action-box {
+  font-size: 0.8em;
+
+  padding: 0.5em;
+  background-color: rgb(233, 233, 233);
+  border-radius: 1em;
+}
+
+.modal-overlay .modal-action-box textarea {
+  font-family: 'Source Sans 3', sans-serif;
+  resize: vertical;
+  border-radius: 1em;
+  width: 100%;
+  min-height: 100px;
+  padding: 0.5em;
+}
+
+.modal-overlay .modal-actions {
+  display: flex;
+  justify-content:baseline;
+  gap: 0.5em;
+}
+
+.modal-overlay .modal-actions button {
+  width: 100%;
+}
+
+.modal-overlay .modal-actions button:first-of-type {
+  background-color: transparent;
+  border: solid #1a8fd1 0.2em;
+  color: #1a8fd1;
+  width: 100%;
+}
+
+
+.modal-overlay.active {
+  visibility: visible;
+}

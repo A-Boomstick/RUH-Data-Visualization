@@ -33,6 +33,7 @@
           <h2>Coaching Comments</h2>
           <span class="panel-badge level-2">Level 2+</span>
         </div>
+        <hr>
         <div class="comment-list" id="coaching-comments">
           <!-- comments injected here -->
         </div>
@@ -48,6 +49,7 @@
           <h2>Teammate Recognition</h2>
           <span class="panel-badge">Level 1</span>
         </div>
+        <hr>
         <div class="comment-list" id="teammate-comments">
           <!-- comments injected here -->
         </div>
@@ -80,12 +82,14 @@
   <div class="modal-overlay" id="modal-overlay">
     <div class="modal">
       <h3>Add a Comment</h3>
-      <p class="modal-target" id="modal-target-label">Posting to: Teammate Recognition</p>
-      <textarea id="modal-textarea" placeholder="Write your comment here…" maxlength="255"></textarea>
-      <div class="status-bar" id="modal-status"></div>
-      <div class="modal-actions">
-        <button class="modal-cancel" onclick="closeModal()">Cancel</button>
-        <button class="modal-submit" id="modal-submit" onclick="submitComment()">Post</button>
+      <div class="modal-action-box">
+        <p class="modal-target" id="modal-target-label">Posting to: Teammate Recognition</p>
+        <textarea id="modal-textarea" placeholder="Write your comment here…" maxlength="255"></textarea>
+        <div class="status-bar" id="modal-status"></div>
+        <div class="modal-actions">
+          <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+          <button class="modal-submit" id="modal-submit" onclick="submitComment()">Post</button>
+        </div>
       </div>
     </div>
   </div>
